@@ -7,7 +7,9 @@
 
 	
 
+
 <script>
+
 $(document).ready(function(){
 
  $(document).on('click', '.pagination a', function(event){
@@ -23,7 +25,21 @@ $(document).ready(function(){
  	var preorder = $('#preorder').val();
  	var upcoming = $('#upcoming').val();
  	var search = $('#search').val();
- 	var brand = $('#brand').val();
+ 	if ($('.zero').is(':checked')) {
+            var brand = 0;
+            $('.brand').prop('checked', false);
+        }else{
+            var array = [];
+            var checkboxes = document.querySelectorAll('input[name=brand]:checked')
+            for (var i = 0; i < checkboxes.length; i++) {
+              array.push(checkboxes[i].value)
+            }
+
+            if (array.length > 0) {
+                var brand=array;
+            }
+            
+        }
  	var minimum_price = $('#minimum_price').val();
  	var maximum_price = $('#maximum_price').val();
   $.ajax({

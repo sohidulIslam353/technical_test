@@ -28,7 +28,7 @@
 								</li><br>
 								@foreach($brands as $brand)
 								<li class="color">
-									<input type="radio" class="submitable brand"  id="brand" name="brand" value="{{ $brand->id }} "> 
+									<input type="checkbox" class="submitable brand"  id="brand" name="brand" value="{{ $brand->id }} "> 
 									{{ $brand->brand_name }} 
 								</li><br>
 
@@ -198,10 +198,17 @@
 	    	var brand = 0;
 	    	$('.brand').prop('checked', false);
 	    }else{
-	    	var brand = $('#brand_id').val();
+	    	var array = [];
+	    	var checkboxes = document.querySelectorAll('input[name=brand]:checked')
+	    	for (var i = 0; i < checkboxes.length; i++) {
+			  array.push(checkboxes[i].value)
+			}
+
+            if (array.length > 0) {
+            	var brand=array;
+            }
+	    	
 	    }
-	    
-	  
 		
 	    var minimum_price = $('#minimum_price').val();
 	    var maximum_price = $('#maximum_price').val();
